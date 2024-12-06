@@ -1,14 +1,30 @@
-def get_password(n):
-    password = ' '
+def find_password(n):
+    password = ''
+
+    # Объяснение алгоритма:
+    # Функция find_password(n) принимает число n в диапазоне от 3 до 20.
+    # Создаем пустую строку password для хранения результата.
+    
+    # Генерируем пары
     for i in range(1, n):
-        for j in range(2, n):
-            if j <= i:
-                continue
-            if n % (i + j) == 0:
+        for j in range(i + 1, n + 1):
+            pair_sum = i + j
+            if n % pair_sum == 0:  # Проверяем кратность
                 password += str(i) + str(j)
+
+    # Объяснение алгоритма:
+    # Вложенные циклы for:
+    # Внешний цикл перебирает значения i от 1 до n-1.
+    # Внутренний цикл перебирает значения j от i + 1 до n.
+    # Считаем сумму пары pair_sum = i + j.
+    # Проверяем кратность: если n делится на pair_sum без остатка (n % pair_sum == 0), то добавляем строковое представление пары i и j к password.
+    
     return password
 
-n = int(input('Введите целое число от 3 до 20: '))
+    # Объяснение алгоритма:
+    # Возвращаем результат.
 
-result = get_password(n)
-print('Пароль:', result)
+# Пример использования функции
+for n in range(3, 21):
+    result = find_password(n)
+    print(f"{n} - {result}")
